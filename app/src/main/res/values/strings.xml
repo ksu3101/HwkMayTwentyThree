@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Homework_0523</string>
+    <string name="menu_selectfiles">select file</string>
+    <string name="c_onloading">불러오는 중…\n잠시만 기다려주세요</string>
+</resources>
