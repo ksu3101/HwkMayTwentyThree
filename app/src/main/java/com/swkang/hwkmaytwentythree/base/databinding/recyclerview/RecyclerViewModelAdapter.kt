@@ -9,6 +9,7 @@ import androidx.databinding.ObservableList
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.swkang.common.exts.getElement
+import com.swkang.hwkmaytwentythree.BR
 
 /**
  * recyclerview 에서 각 position 에 해당하는 item 들에 해당 하는 view resource id
