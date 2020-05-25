@@ -1,5 +1,7 @@
 package com.swkang.model.domain.hwk
 
+import android.util.Log
+import com.swkang.common.LOG_TAG
 import com.swkang.common.exts.add
 import com.swkang.model.base.exts.actionTransformer
 import com.swkang.model.base.exts.createActionProcessor
@@ -12,6 +14,9 @@ import com.swkang.model.domain.common.MessageAction
 import com.swkang.model.domain.common.ShowingErrorToast
 import com.swkang.model.domain.hwk.dto.Couple
 import io.reactivex.Observable
+import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 class HwkCoupleActionProcessor(
     private val localFileLoader: LocalFileLoadHelper
@@ -35,6 +40,8 @@ class HwkCoupleActionProcessor(
 
     private val loadFileL100 = actionTransformer<RetrieveFileOneHundredLinesAction> { action ->
         localFileLoader.loadHomeworkFileOneHundredLine()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .map<Action> {
                 ReceivedCoupleLinesResultAction(handleReceivedItems(it))
             }
@@ -44,6 +51,8 @@ class HwkCoupleActionProcessor(
 
     private val loadFileL10000 = actionTransformer<RetrieveFileTenThousandLinesAction> { action ->
         localFileLoader.loadHomeworkFileTenThousandLine()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .map<Action> {
                 ReceivedCoupleLinesResultAction(handleReceivedItems(it))
             }
@@ -54,6 +63,8 @@ class HwkCoupleActionProcessor(
     private val loadFileL500000 =
         actionTransformer<RetrieveFileFiveHundredThousandLinesAction> { action ->
             localFileLoader.loadHomeworkFileFiveHundredThousandLine()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .map<Action> {
                     ReceivedCoupleLinesResultAction(handleReceivedItems(it))
                 }.onErrorReturn { commonHandleError(it) }

@@ -17,12 +17,15 @@
             android:id="@+id/recyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:coupleItems="@{vm.couples}"
+            android:scrollbars="vertical"
+            app:items="@{vm.couples}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:onCoupleItemClicked="@{vm.onItemClicked}" />
+            app:layoutVertical="@{true}"
+            app:itemViewResId="@{@layout/hwk_list_rvitemv}"
+            app:onItemClickListener="@{vm.onItemClicked}" />
 
         <RelativeLayout
             android:layout_width="0dp"

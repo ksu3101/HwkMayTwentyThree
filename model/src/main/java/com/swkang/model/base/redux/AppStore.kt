@@ -5,10 +5,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.subjects.BehaviorSubject
 import org.koin.core.KoinComponent
 
-/**
- * @author kangsungwoo
- * @since 2020-02-24
- */
 class AppStore(
     initializeAppState: AppState,
     reducer: Reducer<AppState>

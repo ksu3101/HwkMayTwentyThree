@@ -1,5 +1,6 @@
 package com.swkang.hwkmaytwentythree.base.databinding.recyclerview
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableList
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import com.swkang.common.LOG_TAG
 import com.swkang.common.exts.getElement
 import com.swkang.hwkmaytwentythree.BR
 
@@ -18,7 +20,7 @@ import com.swkang.hwkmaytwentythree.BR
 typealias ViewTypeProvider<T> = (item: T, position: Int) -> /* @LayoutRes */ Int
 
 class RecyclerViewModelAdapter<E>(
-    private var items: ObservableList<E> = ObservableArrayList(),
+    private val items: ObservableList<E> = ObservableArrayList(),
     private val viewTypeProvider: ViewTypeProvider<E>? = null,
     private val onItemClickListener: ((E) -> Unit)? = null
 ) : RecyclerView.Adapter<DatabindingViewHolder>() {

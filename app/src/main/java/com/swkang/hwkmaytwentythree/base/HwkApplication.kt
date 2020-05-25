@@ -18,11 +18,11 @@ class HwkApplication : MultiDexApplication() {
         startKoin {
             androidLogger(Level.DEBUG)
             androidContext(this@HwkApplication)
-            appModule
+            modules(appModule)
             //repositoriesModule
-            helpersModule
-            reducersModule
-            viewModelsModules
+            modules(helpersModule)
+            modules(reducersModule)
+            modules(viewModelsModules)
         }
     }
 

@@ -1,6 +1,7 @@
 package com.swkang.hwkmaytwentythree.base
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,8 +39,8 @@ abstract class BaseFragment<S: State>: Fragment() {
         compositeDisposable.add(
             appStore.stateListener()
                 .flatMap { Observable.fromIterable(it.states.values) }
-                .distinctUntilChanged()
                 .canHandleStateType()
+                .distinctUntilChanged()
                 .subscribe {
                     if (it as? S == null) throw IllegalStateException("$it is not allowed state.")
                     if (!vm.render(it)) {

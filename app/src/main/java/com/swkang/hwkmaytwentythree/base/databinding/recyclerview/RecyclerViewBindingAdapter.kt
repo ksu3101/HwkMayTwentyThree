@@ -1,10 +1,12 @@
 package com.swkang.hwkmaytwentythree.base.databinding.recyclerview
 
+import android.util.Log
 import androidx.annotation.LayoutRes
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.swkang.common.LOG_TAG
 
 @BindingAdapter(value = ["items", "ViewProvider", "onItemClickListener"], requireAll = false)
 fun <E> bindItems(

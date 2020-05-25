@@ -2,14 +2,16 @@ package com.swkang.hwkmaytwentythree.base.di
 
 import com.swkang.hwkmaytwentythree.base.helper.LocalFileLoadHelperImpl
 import com.swkang.hwkmaytwentythree.base.helper.MessageHelperImpl
+import com.swkang.hwkmaytwentythree.view.couple.HwkCoupleNavigationHelperImpl
+import com.swkang.model.base.BaseViewModel
 import com.swkang.model.base.helper.LocalFileLoadHelper
 import com.swkang.model.base.helper.MessageHelper
 import com.swkang.model.base.redux.*
 import com.swkang.model.domain.common.MessageReducer
-import com.swkang.model.domain.hwk.CoupleListReducer
-import com.swkang.model.domain.hwk.HwkCoupleActionProcessor
-import com.swkang.model.domain.hwk.InitializedState
+import com.swkang.model.domain.hwk.*
+import com.swkang.model.domain.hwk.couples.CoupleListViewModel
 import org.koin.android.ext.koin.androidApplication
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val appModule = module {
@@ -18,6 +20,9 @@ val appModule = module {
     }
     single {
         AppStore(get(), AppReducer(get()))
+    }
+    single {
+        MessageReducer()
     }
     single<Array<Middleware<AppState>>> {
         arrayOf(
@@ -48,23 +53,19 @@ val repositoriesModule = module {
 val helpersModule = module {
     single<MessageHelper> { MessageHelperImpl(androidApplication()) }
     single<LocalFileLoadHelper> { LocalFileLoadHelperImpl(androidApplication()) }
+    single<HwkCoupleNavigationHelper> { HwkCoupleNavigationHelperImpl() }
 }
 
 val reducersModule = module {
     single<List<Reducer<*>>> {
         listOf(
-            MessageReducer(),
-
-            // domain reducers
             CoupleListReducer(InitializedState)
         )
     }
 }
 
 val viewModelsModules = module {
-    /* fixme
-    viewModel<BaseViewModel<SomeDomainState>> {
-        // create instance of ViewModel
+    viewModel<BaseViewModel<CoupleListState>> {
+        CoupleListViewModel(get())
     }
-    */
 }
